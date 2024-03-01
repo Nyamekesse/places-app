@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import {
   PermissionStatus,
   getCurrentPositionAsync,
@@ -10,6 +11,7 @@ import { getMapPreview } from '../../util/location';
 import OutlinedButton from '../UI/OutlinedButton';
 
 const LocationPicker = () => {
+  const { navigate } = useNavigation();
   const [pickedLocation, setPickedLocation] = useState();
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -31,6 +33,7 @@ const LocationPicker = () => {
 
     return true;
   }
+
   async function getLocationHandler() {
     const hasPermission = await verifyPermissions();
     if (!hasPermission) {
@@ -40,7 +43,11 @@ const LocationPicker = () => {
 
     setPickedLocation({ lat: coords.latitude, lng: coords.longitude });
   }
-  function pickOnMapHandler() {}
+
+  function pickOnMapHandler() {
+    navigate('Map');
+  }
+
   let locationPreview = <Text>No location Picked yet.</Text>;
   if (pickedLocation) {
     locationPreview = (
