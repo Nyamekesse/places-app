@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Alert, Image, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../constants/colors';
-import { getMapPreview } from '../../util/location';
+import { getAddress, getMapPreview } from '../../util/location';
 import OutlinedButton from '../UI/OutlinedButton';
 
 const LocationPicker = ({ onPickLocation }) => {
@@ -29,7 +29,16 @@ const LocationPicker = ({ onPickLocation }) => {
   }, [isFocused, params]);
 
   useEffect(() => {
-    onPickLocation(pickedLocation);
+    async function handleLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng
+        );
+        onPickLocation({ ...pickedLocation, address });
+      }
+    }
+    handleLocation();
   }, [pickedLocation, onPickLocation]);
 
   async function verifyPermissions() {
