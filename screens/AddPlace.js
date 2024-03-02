@@ -4,7 +4,7 @@ import PlaceForm from '../components/Places/PlaceForm';
 
 const AddPlace = ({ navigation }) => {
   function createPlaceHandler(place) {
-    navigation.navigate('AllPlaces', { place });
+    navigation.navigate('AllPlace', { place });
   }
   return <PlaceForm onCreatePlace={createPlaceHandler} />;
 };
