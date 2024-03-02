@@ -89,10 +89,10 @@ const LocationPicker = ({ onPickLocation }) => {
     <View>
       <View style={styles.mapPreview}>{locationPreview}</View>
       <View style={styles.actions}>
-        <OutlinedButton icon='location' onPress={getLocationHandler}>
+        <OutlinedButton icon="location" onPress={getLocationHandler}>
           Locate User
         </OutlinedButton>
-        <OutlinedButton icon='map' onPress={pickOnMapHandler}>
+        <OutlinedButton icon="map" onPress={pickOnMapHandler}>
           Pick on Map
         </OutlinedButton>
       </View>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: Colors.primary100,
     borderRadius: 4,
+    overflow: 'hidden',
   },
   actions: {
     flexDirection: 'row',
@@ -120,7 +121,5 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 4,
-    overflow: 'hidden',
   },
 });
